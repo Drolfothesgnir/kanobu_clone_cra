@@ -1,0 +1,62 @@
+.Sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 310px;
+    z-index: 105;
+    background-color: #2d2d2d;
+    height: 100%;
+    font-size: 1.2em;
+    overflow: auto;
+}
+
+.Sidenav nav:last-of-type {display: block}
+
+.Sidenav nav:last-of-type a {padding: .3rem 1rem}
+
+.Head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem;
+    border-bottom: 2px solid #4a4a4a;
+}
+
+.Sidenav button {font-weight: bold}
+
+.Head button {
+    color: #fff;
+    font-size: 2.5rem;
+}
+
+button.Login {
+    color: #969696;
+    padding: .5rem 1rem;
+    font-size: .9em;
+    border-bottom: 2px solid #4a4a4a;
+    width: 100%;
+}
+
+.Login > * {margin-right:.5rem}
+
+.Open {animation: open .5s ease-out forwards}
+
+.Close {animation: close .5s ease-out forwards}
+
+@keyframes open {
+    from {transform: translateX(-100%)}
+    to{transform: translateX(0)}
+}
+
+@keyframes close {
+    from {transform: translateX(0)}
+    to {transform: translateX(-100%)}
+}
+
+@media(min-height:600px) {
+    .Sidenav {font-size: 1.5em}
+
+    .Sidenav nav:last-of-type {padding-bottom: 0}
+}
+
+@media(min-width:800px) {.Sidenav {display: none;}}

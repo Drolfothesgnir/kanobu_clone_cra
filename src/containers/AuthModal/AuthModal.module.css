@@ -1,0 +1,115 @@
+.AuthModal {
+    padding: 30px;
+    text-align: center;
+    background-color: #fff;
+    z-index: 200;
+    position: absolute;
+    width: 300px;
+    top: 5%;
+    left: calc(50% - 150px);
+    color: #4d4d4d;
+    font-family: Rubik , sans-serif;
+}
+
+.AuthModal button {
+    border-radius: 2px;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+.Head {margin-bottom: 20px;}
+
+.Head h2 {margin: 0;}
+
+.Head button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 2rem;
+}
+
+.AuthModal input {
+    font-family: inherit;
+    padding: .5rem;
+    border: 2px solid #969696;
+    width: 100%;
+    margin-bottom: .6rem;
+    outline: none;
+    font-size: 1.2em;
+}
+
+.Reg input + p {display: none;}
+
+.Reg input:valid {border-color: #198d0a;}
+
+.Reg input:invalid:focus {
+    border-color: #ae1e1f;
+    color: #ae1e1f;
+}
+
+.Reg input:invalid:focus + p , .Error{
+    display: block;
+    margin:0 0 20px;
+    background-color: #ae1e1f;
+    color: #fff;
+    padding: .5rem;
+    font-size: 1em;
+    text-align: left;
+}
+
+p.Error {
+    margin: 0 0 .6rem;
+}
+
+.FormSubmit , .Providers{
+    display: flex;
+    justify-content: space-between;
+}
+
+.FormSubmit .Forgotten {
+    color: #00a4d1;
+    text-align: left;
+    font-size: .8em;
+    font-weight: normal;
+    padding: 0;
+}
+
+button.Button {
+    font-size: 18px;
+    border-radius: 2px;
+    padding: 0.7rem;
+    font-weight: bold;
+    color: #fff;
+    width: 49%;
+    font-family: sans-serif;
+}
+
+.Reg .FormSubmit .Button , .AuthModal > .Button {width: 100%;}
+
+.Button:not(:disabled):hover {opacity: .9;}
+
+.Button:disabled {
+    opacity: .4;
+    cursor: default;
+}
+
+.Button.blue {background-color: #00a4d1;}
+
+.Button.red {background-color: #dc4300;}
+
+.AuthModal > p {
+    margin: 0 0 20px;
+    font-size: .8em;
+    border-bottom: 1px solid #ccc;
+}
+
+.AuthModal > p span {
+    position: relative;
+    padding: 0 .4rem;
+    top: .6em;
+    background: #fff;
+}
+
+.Button.Fb {background-color: #4b628e;}
+
+.Button.Tw {background-color: #00acee;}

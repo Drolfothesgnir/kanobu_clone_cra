@@ -1,0 +1,85 @@
+
+.UserLink {
+    padding: .3rem 1rem;
+    position: relative;
+    width: 100%;
+}
+
+.Head, .Head a, .Body button, .Body a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Head a, .Head button {
+    font-size: 1em;
+    color: #969696;
+    display: block;
+}
+
+.Head a div, .Body > a div {
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.Head a div img, .Body > a img {
+    width: 100%;
+    display: block;
+}
+
+.hidden {display: none}
+
+.Body {
+    background-color: #fff;
+    border-radius: 0 0 15px 15px;
+    padding: 15px;
+    margin-top: .5rem;
+    color: #969696;
+}
+
+.Body > a {display: none}
+
+.Buttons {
+    border-bottom: 1px solid #969696;
+    padding-bottom: 0.5rem;
+    margin-bottom: .5rem;
+}
+
+.Links, .Buttons button {color: #4d4d4d}
+
+.Body button, .Body a {
+    font-weight: normal;
+    width: 100%;
+    margin-top: .5rem;
+    font-size: 1em;
+}
+
+.Body span {color:#969696}
+
+@media (min-width:800px) {
+    .UserLink {width: 67px}
+
+    .Head a span, .Head button {display: none}
+
+    .Head a div {margin: 0}
+
+    .Head:hover + .hidden, .hidden:hover {display: block}
+
+    .Body {
+        position: absolute;
+        top: 0;
+        right: 10px;
+        margin: 0;
+        box-shadow: 0 0 15px rgba(0,0,0,.5);
+        width: 210px;
+    }
+
+    .Body > a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 0;
+    }
+}

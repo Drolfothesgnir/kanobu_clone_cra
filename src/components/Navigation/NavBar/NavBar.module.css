@@ -1,0 +1,42 @@
+.NavBar nav{display: none}
+
+.NavBar nav a {
+    display: flex;
+    color: #4a4a4a;
+    align-items: center;
+    font-weight: bold;
+}
+
+.all:hover , .all.active{color: #fff}
+
+.games:hover , .games.active{color: #e53057}
+
+.films:hover , .films.active{color: #57ba62}
+
+.books:hover , .books.active{color: #fcb90a}
+
+.internet:hover , .internet.active{color: #4fc7ed}
+
+.internet:hover , .internet.active{color: #4fc7ed}
+
+.tech:hover , .tech.active{color: #8a52a0}
+
+.cybersport:hover , .cybersport.active{color: #ef7828}
+
+.music:hover , .music.active{color: #32308a}
+
+@media(min-width:800px){
+    .NavBar {
+        background-color: #000000;
+        margin-top: 58px;
+        padding: 20px 15px;
+    }
+    
+    .NavBar nav {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+}

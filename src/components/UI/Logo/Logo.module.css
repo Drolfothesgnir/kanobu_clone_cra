@@ -1,0 +1,24 @@
+.Logo {
+    margin: auto 0;
+    box-sizing: border-box;
+    padding: 0.5rem;
+}
+
+.Logo div{
+    display: flex;
+    align-items: center;
+}
+
+.Logo img{
+    display: block;
+    transition: 2s;
+}
+
+.Logo span{
+    font-weight: bold;
+    letter-spacing: 8px;
+    color: #fff;
+    margin-left: .5rem;
+}
+
+.Logo:hover img {transform: rotate(720deg)}

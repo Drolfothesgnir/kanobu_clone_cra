@@ -1,0 +1,204 @@
+footer {
+    background-color: #000000;
+    color: #fff;
+    padding: 0 15px 25px;
+    height: -webkit-max-content;
+    height: -moz-max-content;
+    height: max-content;
+}
+
+.Container {
+    max-width: 1100px;
+    margin: auto;
+    height: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    position: relative;
+}
+
+.Counter {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+            order: 4;
+}
+
+.Counter > div:first-of-type {
+    height: 30px;
+    width: 30px;
+    background-color: #4a4a4a;
+    text-align: center;
+    line-height: 30px;
+}
+
+.CounterLink {
+    border: 3px solid #fcb913;
+    background-color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 3px;
+    position: relative;
+    width: 31px;
+    height: 31px;
+}
+
+.CounterLink span {
+    border: 3px solid #fcb913;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    display: block;
+    width: 19px;
+    height: 19px;
+}
+
+.CounterLink::after {
+    content: "";
+    height: 3px;
+    width: 18px;
+    position: absolute;
+    left: 5px;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    top: 10px;
+    display: block;
+    background-color: #fcb913;
+}
+
+.Links {
+    padding: 20px 0;
+    max-width: 840px;
+    margin: auto;
+    z-index: 5;
+    position: relative;
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+}
+
+.Links ul {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+.Links li {margin: 10px 0}
+
+.Links a:hover {text-decoration: underline}
+
+.Bottom {
+    max-width: 850px;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+    width: 80%;
+    margin:20px auto 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+}
+
+.Bottom a {
+    width: 30px;
+    height: 30px;
+    color: #000;
+    border-radius: 50%;
+    background-color: #fff;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+}
+
+.Bottom span {
+    text-align: center;
+    font-size: .9em;
+    -webkit-box-ordinal-group: 6;
+        -ms-flex-order: 5;
+            order: 5;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+@media (min-width:800px) {
+    .Counter {
+        position: absolute;
+        bottom: initial;
+        top: calc(1.5rem + 10px);
+    }
+
+    .Links {
+        -webkit-box-ordinal-group: 2;
+            -ms-flex-order: 1;
+                order: 1;
+        width: 100%;
+        padding: 30px 0;
+    }
+
+    .Links ul {
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+    }
+
+    .Bottom {margin: auto;}
+
+    .Bottom a {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    .Bottom span {
+        position: static;
+        width: auto;
+        -webkit-box-ordinal-group: initial;
+            -ms-flex-order: initial;
+                order: initial;
+    }
+}

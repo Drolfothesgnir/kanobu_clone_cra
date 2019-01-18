@@ -1,0 +1,21 @@
+.Toolbar {
+    background-color: #2d2d2d;
+    position: fixed;
+    top: 0;
+    height: 58px;
+    width: 100%;
+}
+
+.Container {
+    max-width: 1250px;
+    height: 100%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.Container nav {display: none}
+
+@media(min-width:800px){
+    .Container nav {display: flex}
+}
