@@ -27,12 +27,13 @@ class Shouts extends Component{
         file:null,
         fullOverview:null,
         srcImage:null,
-        loadMore:true
+        loadMore:true,
+        loading:false
     }
 
     componentDidUpdate(prevProps) {
       if(this.props.readyToLoad && !prevProps.readyToLoad){
-        dbRef.orderByChild('createdAt').limitToLast(5)
+        dbRef.orderByChild('createdAt').limitToLast(15)
         .on('child_added' , (snap) => {
             const arr = [...this.state.shouts];
             arr.push({
@@ -41,6 +42,11 @@ class Shouts extends Component{
                 repliesLength:Object.keys(snap.val().replies || 0).length 
             });
             this.setState({shouts:arr.sort((a,b) => b.createdAt - a.createdAt)});
+        });
+        dbRef.on('child_removed' , snap => {
+            const shouts = this.state.shouts
+                .filter(item => item.id !== snap.key);
+            this.setState({shouts});
         })
       }
     }
@@ -62,23 +68,30 @@ class Shouts extends Component{
 
     submitHandler = e => {
         e.preventDefault();
+        this.setState({loading:true});
         const {file , message} = this.state;
         const uploadTask = new Promise((res , rej) => {
             if(!file) res(null);
-            storage.ref(`images/shouts/${this.props.user.id}/${file.name}`)
+            storage.ref(`images/shouts/${this.props.user.data.id}/${file.name}`)
                 .put(file , {contentType:file.type}).then(snap => (
                     snap.ref.getDownloadURL().then(url => res(url))
                 )).catch(err => rej(err));
         });
         uploadTask.then(url => {
             const data = {
-                user:this.props.user,
+                user:this.props.user.data,
                 message,
                 url,
                 createdAt:firebase.database.ServerValue.TIMESTAMP
             }
             dbRef.push(data).then(() => {
-                this.setState({message:'' , file:null , srcImage:null})
+                this.setState({
+                    message:'' , 
+                    file:null , 
+                    srcImage:null,
+                    editor:false,
+                    loading:false
+                })
             });  
         })
     }
@@ -96,6 +109,7 @@ class Shouts extends Component{
 
     replyHandler = (e) => {
         e.preventDefault();
+        this.setState({loading:true});
         const {
              file,
              message,
@@ -112,19 +126,16 @@ class Shouts extends Component{
         });
         uploadTask.then(url => {
             const data = {
-                user:this.props.user,
+                user:this.props.user.data,
                 message,
                 url,
                 createdAt:firebase.database.ServerValue.TIMESTAMP
             }
-            dbRef.child(shoutToReplyId).child('replies').push({data})
+            dbRef.child(shoutToReplyId).child('replies').push(data)
                 .then(() => {
                     const newArr = [...shouts];
                     const item = {...shouts[repliedShoutOrder]};
-                    item.repliesLength = (
-                        Object.keys(shouts[repliedShoutOrder].replies || 0)
-                            .length + 1
-                    );
+                    item.repliesLength += 1;
                     newArr[repliedShoutOrder] = item;
                     this.setState({
                         shouts:newArr,
@@ -132,7 +143,8 @@ class Shouts extends Component{
                         editor:false,
                         message:'',
                         file:null,
-                        srcImage:null
+                        srcImage:null,
+                        loading:false
                     })
                 })
         })
@@ -168,13 +180,7 @@ class Shouts extends Component{
         }
       }
 
-    removeShoutHandler = id => {
-        dbRef.child(id).remove().then(() => {
-            this.setState(state => ({
-                shouts:state.shouts.filter(item => item.id !== id)
-            }))
-        })
-    }
+    removeShoutHandler = id => dbRef.child(id).remove()
 
     removeFileHandler = () => this.setState({file:null})
 
@@ -186,7 +192,8 @@ class Shouts extends Component{
                 srcImage ,
                 shouts,
                 reply,
-                fullOverview
+                fullOverview,
+                loading
         } = this.state;
 
         const {user, readyToLoad, mode} = this.props;
@@ -197,7 +204,7 @@ class Shouts extends Component{
                         fullOverview={this.zoomHandler}
                         remove={this.removeShoutHandler}
                         isAuth={user !== null}
-                        isMine={user && item.user.id === user.id} 
+                        isMine={user && item.user.id === user.data.id} 
                         message={item} 
                         key={item.id}/>
         })
@@ -235,25 +242,26 @@ class Shouts extends Component{
                     <div className={classes.Footer}>
                         <button
                             onClick={
-                                user ? 
+                                user.data ? 
                                 () => this.setState(prevState => ({
                                     editor:!prevState.editor
                                 })) :
                                 this.props.login
                             }>
-                            {user ? 'Write a shout' : 'Authorize first'}
+                            {user.data ? 'Write a shout' : 'Authorize first'}
                             <FontAwesomeIcon icon={editor ? faTimes : faEdit} size='lg'/>
                         </button>
                         {
                             editor &&
                             <Suspense fallback={null}>
                                 <Editor 
+                                    loading={loading}
                                     chooseFile={this.fileChangeHandler}
                                     send={reply ? 
                                         this.replyHandler : this.submitHandler}
                                     file={srcImage}
                                     removeFile={this.removeFileHandler}
-                                    user={user}
+                                    user={user.data}
                                     change={this.inputChangeHandler}
                                     value={message}/>
                             </Suspense>

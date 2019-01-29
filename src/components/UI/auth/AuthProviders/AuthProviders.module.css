@@ -1,0 +1,23 @@
+.Providers {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Provider {
+  font-size: 1.8rem;
+  height: 55px;
+  border-radius: 2px;
+  padding: 0.7rem;
+  font-weight: bold;
+  color: #fff;
+  width: 49%;
+  opacity: 0.5;
+  font-family: sans-serif;
+  transition: .5s;
+}
+
+.Provider:hover, .Provider:focus {opacity: 1;}
+
+.Fb {background-color: #4b628e;}
+
+.Tw {background-color: #00acee;}

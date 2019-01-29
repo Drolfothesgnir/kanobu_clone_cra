@@ -6,6 +6,7 @@ const FormElement = (props) => {
                 return (
                     <input 
                         onChange = {props.change}
+                        name={props.name}
                         {...props.config}
                         value = {props.value}/>
                 );

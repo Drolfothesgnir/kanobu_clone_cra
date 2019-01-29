@@ -4,7 +4,7 @@ import { UserConsumer as Consumer } from '../Context/UserContext';
 
 const withUser = (Component) => props => (
   <Consumer>
-    {user => <Component {...props} user={user}/>}
+    {data => <Component {...props} user={data}/>}
   </Consumer>
 )
 

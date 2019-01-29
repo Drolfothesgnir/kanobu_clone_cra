@@ -21,11 +21,11 @@ class UserLink extends React.Component {
   state={bodyHidden:true}
 
   render(){
-    const {user} = this.props,
+    const {data:user} = this.props.user,
     {bodyHidden} = this.state;
     return (
         <UIConsumer>
-            {({onEnable}) => (
+            {({onEnable, onDisable}) => (
                 <div className={classes.UserLink}>
                     <div className={classes.Head}>
                     <Link to={`/users/${user.id}`}>
@@ -43,13 +43,16 @@ class UserLink extends React.Component {
                     <div className={[classes.Body, bodyHidden && classes.hidden].join(' ')}>
                     <Link to={`/users/${user.id}`}>
                         <div>
-                        <img src={user.image || avatar} alt={user.displayName}/>
+                            <img src={user.image || avatar} alt={user.displayName}/>
                         </div>
                         <span>{user.displayName}</span>
                     </Link>
                     <div className={classes.Buttons}>
                         <button
-                            onClick={()=>onEnable('profileUpdateActive')}>
+                            onClick={()=>{
+                                onDisable('sidenavActive')
+                                onEnable('profileEditorActive')
+                            }}>
                             Edit profile
                             <FontAwesomeIcon icon={faUserEdit}/>
                         </button>

@@ -2,12 +2,12 @@
     background-color: #2d2d2d;
     position: fixed;
     top: 0;
-    height: 58px;
     width: 100%;
 }
 
 .Container {
-    max-width: 1250px;
+    max-width: 1200px;
+    padding: 0 15px;
     height: 100%;
     margin: auto;
     display: flex;

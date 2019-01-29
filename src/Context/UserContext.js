@@ -8,30 +8,38 @@ class UserProvider extends Component {
 
   state = {user:null}
 
-  authHandler = user => this.setState({user});
+  authHandler = (user = null) => {
+    console.log(user);
+    this.setState({user})
+  };
 
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
+    auth.onAuthStateChanged(async user => {
       if(user){
-        user = {
-          displayName:user.displayName,
+        let displayName = user.displayName;
+        if(!displayName){
+          const splitName = user.email.split('@')[0]; 
+          await user.updateProfile({displayName:splitName})
+          .then(() => displayName = splitName);
+        }
+        const data = {
           id:user.uid,
+          displayName,
           email:user.email,
           image:user.photoURL
         }
-        if(!user.displayName){
-         return user.updateProfile({displayName:user.email.split('@')[0]})
-            .then(user => this.authHandler(user));
-        }
-        this.authHandler(user);
-      }else this.authHandler(user);
-    })
+        this.authHandler(data);
+      } else this.authHandler()
+    });
   }
   
 
   render() {
     return (
-      <Provider value={this.state.user}>
+      <Provider value={{
+        data:this.state.user,
+        onUserDataChanged:this.authHandler
+      }}>
         {this.props.children}
       </Provider>
     );

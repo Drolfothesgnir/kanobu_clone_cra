@@ -14,19 +14,19 @@ const Tools = () => {
                 <div className = {classes.Tools}>
                     <button 
                         onClick = {()=>onEnable('searchActive')}>
-                        <FontAwesomeIcon icon={faSearch} size='2x'/>
+                        <FontAwesomeIcon icon={faSearch}/>
                     </button>
                     <button
                         onClick = {()=>onEnable('sidenavActive')}
                         className = {classes.Sidenav}>
-                        <FontAwesomeIcon icon={faBars} size='2x'/>
+                        <FontAwesomeIcon icon={faBars}/>
                     </button>
                     <LoginButton className={classes.Login}/>
                     <button
                         onClick = {Shouts ? 
                             ()=>onEnable('shoutsActive') : onFetchShouts
                         }>
-                        <FontAwesomeIcon icon={faBell} size='2x'/>
+                        <FontAwesomeIcon icon={faBell}/>
                     </button>
                 </div>
             )}

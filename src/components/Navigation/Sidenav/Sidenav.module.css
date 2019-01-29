@@ -6,8 +6,9 @@
     z-index: 105;
     background-color: #2d2d2d;
     height: 100%;
-    font-size: 1.2em;
     overflow: auto;
+    font-size: 1.5rem;
+    padding-bottom: 2rem;
 }
 
 .Sidenav nav:last-of-type {display: block}
@@ -22,17 +23,19 @@
     border-bottom: 2px solid #4a4a4a;
 }
 
-.Sidenav button {font-weight: bold}
+.Sidenav button {
+    font-weight: bold;
+    font-size: 1em;
+}
 
 .Head button {
     color: #fff;
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 button.Login {
     color: #969696;
     padding: .5rem 1rem;
-    font-size: .9em;
     border-bottom: 2px solid #4a4a4a;
     width: 100%;
 }
@@ -51,12 +54,6 @@ button.Login {
 @keyframes close {
     from {transform: translateX(0)}
     to {transform: translateX(-100%)}
-}
-
-@media(min-height:600px) {
-    .Sidenav {font-size: 1.5em}
-
-    .Sidenav nav:last-of-type {padding-bottom: 0}
-}
+}   
 
 @media(min-width:800px) {.Sidenav {display: none;}}

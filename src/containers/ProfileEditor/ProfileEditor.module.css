@@ -1,0 +1,38 @@
+.ProfileEditor {
+  width: 300px;
+  background-color: #fff;
+  position: fixed;
+  top: 10px;
+  left: calc(50% - 150px);
+  display: flex;
+  flex-direction: column;
+  z-index: 105;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+}
+
+.ProfileEditor > button {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  color: #fff;
+  z-index: 108;
+  font-size: 1.5rem;
+}
+
+@media (min-width:800px){
+  .ProfileEditor {
+    width: 880px;
+    flex-direction: row;
+    top:15%;
+    justify-content: space-between;
+    left: calc(50% - 440px);
+  }
+
+  .ProfileEditor > button {
+    color: #000;
+    font-size: 19px;
+    width: 19px;
+    height: 19px;
+  }
+}

@@ -1,6 +1,6 @@
 .NavItems {
     display: block;
-    border-bottom: 2px solid #4a4a4a;      
+    border-bottom: 2px solid #4a4a4a;  
 }
 
 .NavItems a {
@@ -17,12 +17,14 @@
         display: flex;
         justify-content: space-between;
         border: none;
+        font-size: 1.4rem;
     }
     
     .NavItems a {
-        display: flex;
-        align-items: center;
+        /* display: flex;
+        align-items: center; */
         padding:0 20px;
+        line-height: 60px;
     }
     
     

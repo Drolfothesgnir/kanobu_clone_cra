@@ -10,16 +10,19 @@ const UserLink = React.lazy(() => import('./UserLink'))
 
 const LoginButton = (props) => {
   return (
-        props.user ? (
+        props.user.data ? (
           <React.Suspense fallback={<Spinner/>}>
             <UserLink user={props.user}/>
           </React.Suspense>
         ) : (
           <UIConsumer>
-            {({onEnable}) => (
+            {({onEnable, onDisable}) => (
               <button
               className = {props.className}
-              onClick = {()=>onEnable('authActive')}>
+              onClick = {()=>{
+                onDisable('sidenavActive')
+                onEnable('authActive')
+                }}>
               <FontAwesomeIcon icon = {faSignInAlt}/>
               LOGIN
             </button>

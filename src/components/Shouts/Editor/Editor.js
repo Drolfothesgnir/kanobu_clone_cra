@@ -14,7 +14,8 @@ const Editor = (props) => {
         change,
         removeFile,
         send,
-        chooseFile
+        chooseFile,
+        loading
     } = props;
 
     return (
@@ -33,9 +34,10 @@ const Editor = (props) => {
                             value={value}
                             maxLength='300' />
                         <div className={[classes.Footer, classes.reply].join(' ')}>
-                            <button>
-                                Send
-                            </button>
+                                <button 
+                                    disabled={(!file && !value) || loading}>
+                                    Send
+                                </button>
                             <div className={classes.FileInput}>
                                 <span>{300 - value.length}</span>
                                 {

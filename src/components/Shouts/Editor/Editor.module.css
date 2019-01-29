@@ -13,7 +13,6 @@
 
 .Head > span {
     color: #969696;
-    font-size: .9em;
     font-weight: normal;
 }
 
@@ -35,7 +34,7 @@
 
 .Body {
     background-color: #fff;
-    padding: 1rem;
+    padding: 15px;
 }
 
 
@@ -73,7 +72,6 @@
 
 .Footer a {
     color: #969696;
-    font-size: .8em;
 }
 
 .Footer a span , .FileInput > span , .RemoveButton svg {margin-right: .5rem}
@@ -85,9 +83,13 @@
     color: #969696;
 }
 
+.Footer button:disabled {
+    cursor: not-allowed;
+    color:#969696
+}
+
 .RemoveButton {
-    font-size: 1em;
-    padding:0 0 .5rem;
+    padding:0 0 8px;
 }
 
 .RemoveFile {

@@ -1,0 +1,78 @@
+.Head {
+  width: 100%;
+  background-color: #252525;
+  text-align: center;
+  color: #969696;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: max-content;
+  padding: 1rem 0;
+}
+
+.Container label {cursor: pointer}
+
+.Container {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  margin: 1rem 0;
+}
+
+.Container label, .Container label img {
+  display: block;
+  width: 100%;
+}
+
+.Controls {
+  width: 100%;
+  padding: 0 .5rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.Controls input {
+  margin:.5rem auto;
+  appearance: none;
+  height: 10px;
+  width: 100%;
+  outline: none;
+  cursor: pointer;
+  background: #969696;
+  border-radius: 5px;
+  display: block;
+}
+
+.Controls input::-webkit-slider-thumb {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border: 5px solid #969696;
+  border-radius: 50%;
+  background-color: #252525;
+
+}
+
+.Button {
+  background: transparent;
+  border: 2px solid #969696;
+  border-radius: 15px;
+  margin: 3rem .5rem 0;
+  padding: .3rem;
+  color: #969696;
+}
+
+.Head input[type='file'] {display: none}
+
+@media (min-width:800px) {
+  .Head {width: 30%}
+
+  .Container {
+    width: 150px;
+    height: 150px;
+  }
+}

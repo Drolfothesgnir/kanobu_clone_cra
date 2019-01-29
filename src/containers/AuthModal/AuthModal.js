@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
+import Providers from '../../components/UI/auth/AuthProviders/AuthProviders';
 import Spinner from '../../components/UI/Spinners/Main/Spinner';
 import Input from '../../components/UI/FormElement/FormElement';
 import classes from './AuthModal.module.css';
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
-import { auth , fbProvider , twProvider} from '../../firebase';
+import { auth } from '../../firebase';
 
 class AuthModal extends Component {
 
@@ -29,7 +30,8 @@ class AuthModal extends Component {
                   type:'password',
                   placeholder:'Password',
                   required:true,
-                  pattern:'^([a-zA-Z0-9@*#]{8,15})$'
+                  pattern:'^([a-zA-Z0-9@*#]{8,15})$',
+                  maxLength:25
               },
               validatonMessage:'Password must contain at least 8 characters , at least 1 number and both lowercase and uppercase letters.'
           }
@@ -98,15 +100,6 @@ class AuthModal extends Component {
       }
   }
 
-  providerAuthHandler = type => {
-      const provider = type === 'fb' ? fbProvider : twProvider;
-      auth.signInWithPopup(provider).then(() => {
-          this.props.close();
-      }).catch(error => {
-          this.setState({error});
-      });
-  }
-
   render() {
       const {formData , formValid , login , loading , error} = this.state;
       const inputs = Object.keys(formData).map(input => {
@@ -168,18 +161,9 @@ class AuthModal extends Component {
                     login && 
                     <>
                       <p><span>Sign in with</span></p>
-                      <div className={classes.Providers}>
-                          <button 
-                            onClick={()=>this.providerAuthHandler('tw')}
-                            className={[classes.Button,classes.Tw].join(' ')}>
-                            Twitter
-                          </button>
-                          <button
-                            onClick={()=>this.providerAuthHandler('fb')}
-                            className={[classes.Button,classes.Fb].join(' ')}>
-                            Facebook
-                          </button>
-                      </div>
+                      <Providers
+                        fail={error => this.setState({error})}
+                        success={() => this.props.close()}/>
                     </>
                   }
                   <p>

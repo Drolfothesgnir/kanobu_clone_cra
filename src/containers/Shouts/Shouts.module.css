@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: column;
     transition: .5s;
+    font-size: 1.4rem;
 }
 
 .Shouts button {font-size: 1.1em}
@@ -16,8 +17,14 @@
 .Head {
     text-align: center;
     color: #000;
-    font-weight: bold;
     padding: .7rem .7rem .8rem;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+.Head span {
+    letter-spacing: 1.5px;
+    font-weight: 700;
 }
 
 .Head > button {
@@ -31,20 +38,21 @@
 
 .Head > button:hover , .Footer button:hover {color: #000}
 
-.Buttons{text-align: center}
+.Buttons {
+    text-align: center;
+    margin-top: 15px;
+}
 
  .Buttons button{
-    margin-top: 1rem;
     background-color: #dddddd;
     color: #000;
     width: 50%;
-    padding: 0.5rem;
-    font-size: 100%;
+    line-height: 30px;
 }
 
-.Buttons button:first-of-type{border-radius: .3rem 0 0 .3rem}
+.Buttons button:first-of-type{border-radius: 4px 0 0 4px}
 
-.Buttons button:last-of-type{border-radius: 0 .3rem .3rem 0}
+.Buttons button:last-of-type{border-radius: 0 4px 4px 0}
 
 .Buttons button:hover,
 .Buttons.shoutsActive button:last-of-type,
@@ -55,7 +63,6 @@
 
 .Body {
     flex: 1;
-    border-top: 1px solid #969696;
     overflow-y: auto;
     padding: .7rem;
 }
@@ -72,7 +79,6 @@
 .Footer > button {
     width: 100%;
     color: #969696;
-    font-size: 1em;
     display: flex;
     align-items: center;
     justify-content: space-between;

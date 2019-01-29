@@ -5,10 +5,11 @@ footer {
     height: -webkit-max-content;
     height: -moz-max-content;
     height: max-content;
+    font-size: 14px;
 }
 
 .Container {
-    max-width: 1100px;
+    max-width: 1200px;
     margin: auto;
     height: 100%;
     display: -webkit-box;
@@ -168,7 +169,7 @@ footer {
     .Counter {
         position: absolute;
         bottom: initial;
-        top: calc(1.5rem + 10px);
+        top: calc(1.5rem + 5px);
     }
 
     .Links {
@@ -176,7 +177,7 @@ footer {
             -ms-flex-order: 1;
                 order: 1;
         width: 100%;
-        padding: 30px 0;
+        padding: 25px 0;
     }
 
     .Links ul {
@@ -189,9 +190,9 @@ footer {
     .Bottom {margin: auto;}
 
     .Bottom a {
-        width: 50px;
-        height: 50px;
-        font-size: 1.5em;
+        width: 45px;
+        height: 45px;
+        font-size: 1.4em;
     }
 
     .Bottom span {

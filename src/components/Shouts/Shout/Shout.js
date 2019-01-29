@@ -6,6 +6,64 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import avatar from '../../../assets/images/avatar.jpg';
 import classes from '../Editor/Editor.module.css';
 
+class Timer extends React.Component{
+    state={
+        time:null,
+        timerID:null
+    }
+    
+    
+    getTime = createdAt => {
+        let time = 'Just now';
+        const past = Date.now() - createdAt;
+        const sOrNull = (d) => d.charAt(d.length - 1) !== '1' ? 's' : '';
+        if(past >= 60000) {
+            const d = (Math.floor(past / 60000)).toString();
+            time = `${d} minute${sOrNull(d)} ago`;
+        };
+        if(past >= 60000 * 60) {
+            const d = (Math.floor(past / (60000 * 60))).toString();
+            time = `${d} hour${sOrNull(d)} ago`;
+        };
+        if(new Date(createdAt).getDate() !== new Date().getDate()){
+            const d = (
+                new Date().getDate() - new Date(createdAt).getDate()
+                ).toString();
+            time = `${d} day${sOrNull(d)} ago`;
+        };
+        if(new Date(createdAt).getMonth() !== new Date().getMonth()){
+            const d = (
+                new Date().getMonth() - new Date(createdAt).getMonth()
+                ).toString();
+            time = `${d} month${sOrNull(d)} ago`;
+        };
+        if(new Date(createdAt).getFullYear() !== new Date().getFullYear()){
+            const d = (
+                new Date().getFullYear() - new Date(createdAt).getFullYear()
+            ).toString();
+            time = `${d} year${sOrNull(d)} ago`;
+        };
+        return time;
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(!prevState.time && this.props.createdAt) {
+            this.setState({time:this.getTime(this.props.createdAt)})
+        }
+    }
+    
+    componentDidMount() {
+        const timerID = setInterval(this.timeChangeHandler,1000);
+        this.setState({timerID});
+    }
+    
+    timeChangeHandler = () => this.setState({time:this.getTime(this.props.createdAt)})
+
+    componentWillUnmount() {clearInterval(this.state.timerID)}
+
+    render(){return <span>{this.state.time}</span>}
+}
+
 const Shout = React.memo((props) => {
 
     const {
@@ -17,44 +75,14 @@ const Shout = React.memo((props) => {
         remove
     } = props;
 
-    let time = 'Just now';
-    const past = Date.now() - message.createdAt;
-    const sOrNull = (d) => d.charAt(d.length - 1) !== '1' ? 's' : '';
-    if(past >= 60000) {
-        const d = (Math.floor(past / 60000)).toString();
-        time = `${d} minute${sOrNull(d)} ago`;
-    };
-    if(past >= 60000 * 60) {
-        const d = (Math.floor(past / (60000 * 60))).toString();
-        time = `${d} hour${sOrNull(d)} ago`;
-    };
-    if(new Date(message.createdAt).getDate() !== new Date().getDate()){
-        const d = 
-            (new Date().getDate() - new Date(message.createdAt).getDate())
-            .toString();
-        time = `${d} day${sOrNull(d)} ago`;
-    };
-    if(new Date(message.createdAt).getMonth() !== new Date().getMonth()){
-        const d = 
-            (new Date().getMonth() - new Date(message.createdAt).getMonth())
-            .toString();
-        time = `${d} month${sOrNull(d)} ago`;
-    };
-    if(new Date(message.createdAt).getFullYear() !== new Date().getFullYear()){
-        const d = 
-            (new Date().getFullYear() - new Date(message.createdAt).getFullYear())
-            .toString();
-        time = `${d} year${sOrNull(d)} ago`;
-    };
-    
     return (
         <div className={classes.Editor}>
             <div className={classes.Head}>
                 <div>
-                    <img src={message.user.file || avatar} alt={message.user.displayName}/>
+                    <img src={message.user.image || avatar} alt={message.user.displayName}/>
                     <b>{message.user.displayName}</b>
                 </div>
-                <span>{time}</span>
+                <Timer createdAt={message.createdAt}/>
             </div>
             <div className={classes.Body}>
                 {isMine && (

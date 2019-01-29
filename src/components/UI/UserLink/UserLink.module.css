@@ -3,6 +3,7 @@
     padding: .3rem 1rem;
     position: relative;
     width: 100%;
+    font-size: 1.5rem;
 }
 
 .Head, .Head a, .Body button, .Body a {
@@ -12,14 +13,13 @@
 }
 
 .Head a, .Head button {
-    font-size: 1em;
     color: #969696;
     display: block;
 }
 
 .Head a div, .Body > a div {
-    width: 35px;
-    height: 35px;
+    width: 40px;
+    height: 40px;
     overflow: hidden;
     border-radius: 50%;
 }
@@ -53,13 +53,15 @@
     font-weight: normal;
     width: 100%;
     margin-top: .5rem;
-    font-size: 1em;
 }
 
-.Body span {color:#969696}
+.Body span {color:#969696;}
 
 @media (min-width:800px) {
-    .UserLink {width: 67px}
+
+    .UserLink {
+        margin: 0 4rem;
+    }
 
     .Head a span, .Head button {display: none}
 
@@ -79,6 +81,7 @@
     .Body > a {
         display: flex;
         justify-content: space-between;
+        flex-direction: row-reverse;
         align-items: center;
         margin: 0;
     }
